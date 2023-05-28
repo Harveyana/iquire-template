@@ -1,0 +1,144 @@
+@import '../partials/base';
+@import '../partials/colors';
+@import '../partials/fonts';
+@import '../partials/mixins';
+@import '../partials/screens';
+
+.profile {
+   h3 {
+      font-size: 18px;
+      font-weight: 700;
+   }
+   .loader {
+      width: 15px;
+      height: 15px;
+   }
+
+   & > div {
+
+      //avatar + user name
+      &:first-child {
+         @include flexAlignCenter;
+         margin-bottom: 33px;
+
+         div {
+            margin-right: 14px;
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 100%;
+
+            img {
+               width: 100%;
+            }
+         }
+      }
+
+      //user details
+      .field {
+         margin-bottom: 16px;
+
+         &>p {
+            font-weight: 500;
+            color: $black;
+            margin-bottom: 2px;
+         }
+
+         &_noEdit,
+         &_edit {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+         }
+
+         &_noEdit {
+           
+
+            p {
+               color: #9C9CA4;
+               font-weight: 400;
+            }
+
+            input {
+               display: none
+            }
+         }
+
+
+         button:not(.primary-btn) {
+            @include hoverPointer;
+            @include resetDefault;
+            color: $blue;
+         }
+
+
+         &_edit {
+            @include flexSpread;
+
+            input {
+               padding: 5px 10px;
+               margin-top: 5px;
+               width: unset;
+
+               &[type=number] {
+
+                  &::-webkit-inner-spin-button,
+                  &::-webkit-outer-spin-button {
+                     -webkit-appearance: none;
+                     margin: 0;
+                  }
+
+                  -moz-appearance: textfield;
+               }
+            }
+
+            
+            & > div {
+               display: flex;
+               align-items: center;
+               margin-top: 8px;
+               gap: 10px;
+            }
+         }
+
+         .primary-btn {
+            width: 70px;
+            padding: 8px 20px;
+
+            &:disabled {
+               cursor: not-allowed;
+            }
+         }
+      }
+   }
+
+   //750px
+   @include tabs {
+      & > div {
+
+         .field {
+            &_edit, 
+            &_noEdit {
+               @include flexSpread;
+               flex-direction: row;
+            }
+
+            &_edit {
+               & > div{
+                  gap: 20px;
+               }
+            }
+         }
+
+         //avatar + user name
+         &:first-child {
+               div {
+                  width: 50px;
+                  height: 50px;
+               }
+         }
+
+      }
+   }
+   
+}

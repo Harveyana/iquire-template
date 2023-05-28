@@ -1,0 +1,32 @@
+@mixin tabs {
+    @media (min-width: 750px) {
+        @content;
+    }
+}
+
+@mixin laps-VW {
+  @media (max-height: 800px) and (min-width: 992px) {
+      @content;
+  }
+}
+
+
+@mixin laps {
+    @media (min-width: 992px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin desktopX {
+    @media (min-width: 1440px) {
+        @content;
+    }
+}
+
+

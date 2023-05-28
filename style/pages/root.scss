@@ -1,0 +1,75 @@
+@import '../partials/screens';
+
+* {
+   transition: .3s;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Satoshi';
+}
+*:focus {
+   outline: none;
+}
+
+
+html {
+   overflow-x: hidden !important;
+   scroll-behavior: smooth;
+   height: 100%;
+}
+
+body {
+   overflow-x: hidden !important;
+   margin: 0;
+}
+
+
+a {
+   text-decoration: none;
+}
+
+
+li {
+   list-style-type: none;
+}
+
+
+.topbar {
+   padding-top: 29px;
+   background: #F5F5F5;
+   position: sticky;
+   top: 0;
+   z-index: 4;
+}
+
+.dash-content {
+   background: #F5F5F5;
+   min-height: 100vh;
+   padding: 0px 15px 15px;
+   position: relative;
+
+   .loader {
+      margin-top: 100px;
+   }
+   
+   //750px 
+   @include tabs {
+      padding: 0px 31px 29px;
+   }
+
+   //1200px
+   @include desktop {
+      min-width: calc(100% - 256px);
+      margin-left: 256px;
+   }
+}
+
+.view-content {
+   background: none;
+   width: 100%;
+   height: max-content;
+
+ 
+}
+
+

@@ -1,0 +1,132 @@
+@import '../partials/base';
+@import '../partials/colors';
+@import '../partials/fonts';
+@import '../partials/mixins';
+@import '../partials/screens';
+
+.sidebar {
+   min-height: 100vh;
+   position: fixed;
+   top: 0;
+   padding: 0px 25px 0px 25px;
+   background: $white;
+   width: 250px;
+   margin-left: -300px;
+   z-index: 5;
+
+   //logo
+   & > a {
+      margin-top: 34px;
+      margin-bottom: 37px;
+      margin-left: 20px;
+      display: block;
+   }
+
+   //navigation
+   nav {
+      ul {
+         li {
+            margin-bottom: 20px;
+            overflow: hidden;
+
+            a {
+               span {
+                  display: inline-block;
+                  margin-right: 21px;
+
+                  .sidebar-icon {
+                     path {
+                        fill: #858282;
+                     }
+                  }
+               }
+
+               @include flexAlignCenter;
+               color: $grey;
+               padding: 17px 0px 17px 21px;
+
+               &.nuxt-link-active {
+                  background: $blue;
+                  color: $white;
+   
+                  span {
+                     svg {
+                        path {
+                           fill: $white !important;
+                        }
+                     }
+                  }
+               }
+            }
+
+            
+         }
+      }
+   }
+
+   //hamburger & logout button
+   &>button {
+      @include resetDefault;
+      @include hoverPointer;
+   }
+
+   .ham-close {
+      margin-left: 170px;
+      margin-top: 40px;
+      right: 30px;
+
+      svg {
+         path {
+            fill: $grey
+         }
+      }
+   }
+
+   .logout-btn {
+      position: absolute;
+      bottom: 5.52vh;
+      width: 100%;
+      @include flexAlignCenter;
+      padding: 17px 0px 17px 21px;
+      color: #EC5D57;
+
+      span {
+         display: inline-block;
+         margin-right: 21px;
+      }
+   }
+
+   //1200px
+   @include desktop {
+      width: 256px !important;
+      margin-left: unset !important;
+      padding: 0px 15px 0px 25px;
+
+      //logo
+      & > a {
+         margin-left: 22px;
+      }
+
+      .ham-close {
+         display: none;
+      }
+
+      //navigation 
+      nav {
+         ul {
+            li {
+               &:not(:last-child){
+                  margin-bottom: 24;
+               }
+            }
+         }
+      }
+
+      .logout-btn {
+         bottom: 215px;
+      }
+   }
+}
+.shown {
+   margin-left: unset;
+}

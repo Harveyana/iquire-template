@@ -1,0 +1,90 @@
+@import '../partials/base';
+@import '../partials/colors';
+@import '../partials/fonts';
+@import '../partials/mixins';
+@import '../partials/screens';
+
+.settings {
+   .topbar {
+      padding-bottom: 20px;
+   }
+
+   .summary {
+      padding: 30px;
+      background: $white;
+      margin-bottom: 21px;
+
+      h2 {
+         font-size: 18px;
+         margin-bottom: 10px;
+         font-weight: 500;
+      }
+
+      ul {
+         li {
+            @include flexAlignCenter;
+            @include hoverPointer;
+
+            svg {
+               margin-right: 22.22px;
+            }
+
+            padding: 14px 0 14px 20px;
+            margin-bottom: 10px;
+         }
+      }
+
+      //750px
+      @include tabs {
+         h2 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        // ul {
+                //     li {
+    
+                //         padding: 14px 0 14px 20px;
+                //         margin-bottom: 30px;
+                //     }
+                // }
+      }
+   }
+
+   .details {
+      background: $white;
+      padding: 30px;
+
+      //750px
+      @include tabs {
+         padding: 62px 88px 62px 56px;
+      }
+   }
+
+   .view-content {
+
+      //992px
+      @include laps {
+         display: flex;
+      }
+   }
+
+   .summary {
+      //992ps 
+      @include laps {
+         max-width: 350px;
+         margin-bottom: 0;
+         margin-right: 30px;
+         height: max-content;
+      }
+   }
+   
+   .details {
+
+      //992px
+     @include laps {
+         width: calc(100% - 350px);
+         height: 74vh
+     }
+   }
+}

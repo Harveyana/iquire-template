@@ -1,0 +1,261 @@
+@import '../partials/base';
+@import '../partials/colors';
+@import '../partials/fonts';
+@import '../partials/mixins';
+@import '../partials/screens';
+
+.login {
+   min-height: 100vh;
+   min-width: 280px;
+ 
+   & > div {
+      //slideshow 
+      &:first-child {
+        
+         
+
+      }
+ 
+      //forms + interactions
+      &:nth-child(2) {
+         z-index: 2; 
+         background: $white;
+         padding-top: 13vh;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+
+         & > div {   
+            width: 90%;
+            max-width: 385px;
+            color: $black;
+
+            //logo
+            & > a:nth-of-type(1) {
+               display: block;
+               margin: 0px auto 50px auto
+            }
+
+            h2, p {
+               text-align: center
+            }
+            
+            h2 {
+               margin-bottom: 1.11vh
+            }
+
+            form {
+               //password validation
+               & > div {
+                  margin-top: 45px;
+
+                  &>span {
+                  display: block;
+                  margin-bottom: 10px;
+
+
+                  svg {
+                     margin-right: 9.17px;
+                  }
+                  }
+
+                  .condition-null {
+                  color: #828282;
+                  }
+
+                  .condition-pass {
+                  color: #66C27C;
+
+                  path {
+                     fill: #66C27C;
+                  }
+
+                  }
+               }
+            }
+
+            //subheading
+            & > p{
+               margin-bottom: 3.78vh;
+               font-weight: 400;
+
+               a {
+                  color: $blue;
+               }
+            }
+
+            label {
+               color: $black;
+               font-weight: 500;
+            }
+
+            input {
+               
+               padding-left: 20px;
+               margin-bottom: 1.78vh;
+               margin-top: 1.11vh;
+               font-weight: 400;
+               
+               &[type="submit"] {
+                  color: white;
+                  @include hoverPointer;
+                  margin-bottom: 2.22vh;
+                  margin-top: 41px;
+                  padding-left: 0;
+                  padding: 14px 0px;
+                  font-weight: 500;
+
+                  &:hover {
+                  background: #1b205fed;
+                  }
+               }
+            }
+
+            .login-error-mssg {
+                  display: block;
+                  color: rgb(253, 97, 97);
+                  margin-top: -10px;
+                  margin-bottom: 10px;
+            }
+
+
+            //forgot password
+            & > a {
+               display: block;
+               width: max-content;
+               margin: auto;
+               color: #9C9CA4;
+            }
+
+            //google & facebook signin
+            .third-party-signup {
+               margin-bottom: 50px;
+
+               p {
+                  text-align: center;
+                  margin-top: 4.89vh;
+                  margin-bottom: 2.67vh;
+               }
+
+               button  {
+                  @include hoverPointer;
+                  background: $white;
+                  color: #2E2C34;
+                  @include flexCenter;
+                  margin-bottom: 2.22vh;
+
+                  img {
+                  margin-right: 12px;
+                  }
+
+                  &:hover {
+                  border: 1px solid $black;
+                  }
+
+               }
+            }
+         }
+   
+      }
+   }
+
+   //992px
+   @include laps {
+      display: flex;
+      
+      & > div {
+         width: 50%;
+
+         //sildeshow + headings
+         &:first-child {
+            
+         }
+
+         //forms + interactions
+         &:nth-child(2) {
+            & > div {
+               //logo
+               & > a:nth-of-type(1) {
+                  display: none;
+               }
+
+               h2, p {
+                  text-align: left
+               }
+            }
+         }
+      }
+   }
+
+   @include laps-VW {
+      & > div {
+         //sildeshow + headings
+         &:first-child {
+           
+         }
+ 
+         //forms + interactions
+         &:nth-child(2) {
+            padding-top: 8vh;
+ 
+            & > div {
+             transform: scale(0.92);
+ 
+             //google & facebook signin
+             & > div:last-child {
+               margin-bottom: 0;
+             }
+            }
+                    
+         }
+      }
+   }
+
+   //1200px
+   @include desktop {
+      & > div {
+
+         //sildeshow 
+         &:first-child {
+            
+            .signup_slideshow_content {
+              
+            }
+
+            //representing h1
+            .large-text {
+               font-size: 2.5rem;
+            }
+         }
+ 
+         //forms + interactions
+         &:nth-child(2) {
+           
+         }
+      }
+   }
+
+   //1440px
+   @include desktopX {     
+      & > div {
+
+         //sildeshow
+         &:first-child {
+            
+            .signup_slideshow_images {
+              
+            }
+
+            //representing h1
+            .large-text {
+               font-size: 3rem;
+            }
+         }
+ 
+         //forms + interactions
+         &:nth-child(2) {
+          
+         }
+      }
+   }
+}

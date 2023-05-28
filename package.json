@@ -1,0 +1,39 @@
+{
+   "name": "iquire-student",
+   "version": "1.0.0",
+   "private": true,
+   "scripts": {
+      "dev": "nuxt",
+      "build": "nuxt build",
+      "start": "nuxt start",
+      "generate": "nuxt generate"
+   },
+   "dependencies": {
+      "@emailjs/browser": "^3.11.0",
+      "@kurkle/color": "^0.3.2",
+      "@nuxt/content": "^1.0.0",
+      "@nuxtjs/axios": "^5.13.6",
+      "@nuxtjs/pwa": "^3.3.5",
+      "@paystack/inline-js": "^2.12.6",
+      "core-js": "^3.25.3",
+      "docx": "^8.0.4",
+      "export-from-json": "^1.7.2",
+      "file-saver": "^2.0.5",
+      "firebase": "^9.22.1",
+      "jspdf": "^2.5.1",
+      "jspdf-autotable": "^3.5.28",
+      "nuxt": "^2.15.8",
+      "vue": "^2.7.10",
+      "vue-server-renderer": "^2.7.10",
+      "vue-template-compiler": "^2.7.10"
+   },
+   "devDependencies": {
+      "sass": "^1.62.1",
+      "sass-loader": "^10.1.1",
+      "webpack": "^4.46.0"
+   },
+
+   "overrides": {
+      "webpack-dev-middleware": "5.0.0"
+   }
+}

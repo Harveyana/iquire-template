@@ -1,0 +1,110 @@
+@import '../partials/base';
+@import '../partials/colors';
+@import '../partials/fonts';
+@import '../partials/mixins';
+@import '../partials/screens';
+
+
+.helpdesk {
+   form {
+      max-width: 385px;
+      margin-bottom: 38px;
+
+      &>div {
+         display: flex;
+         flex-direction: column-reverse;
+      }
+
+      label {
+         display: inline-block;
+         font-weight: 500;
+         margin-bottom: 8px;
+      }
+
+      input,
+      textarea {
+         padding-left: 14px;
+
+         &:not(input[type=submit]) {
+            &:focus {
+               border: 1px solid $blue;
+               color: $blue;
+
+               &~label {
+                  color: $blue;
+               }
+            }
+         }
+      }
+
+      input {
+         margin-bottom: 16px;
+         font-weight: 400;
+
+         &[type=submit] {
+            font-weight: 500;
+         }
+
+
+      }
+
+      textarea {
+         margin-bottom: 38px;
+      }
+
+   }
+
+   &>p {
+      font-weight: 500;
+      margin-top: 33px;
+      color: $black;
+   }
+
+   .socials {
+      margin-top: 10px;
+
+      ul {
+         display: flex;
+
+         li {
+            margin-right: 6px;
+            background: #FAFAFA;
+            border-radius: 100%;
+
+            a {
+               width: 35px;
+               height: 35px;
+               @include flexCenter;
+
+               img {
+                  width: 16px;
+               }
+            }
+         }
+      }
+   }
+
+   //750px 
+   @include tabs {       
+      & > p {
+      }
+
+      .socials {
+          margin-top: 33px;
+
+          ul {
+              li {
+                  a {
+                      width: 40px;
+                      height: 40px;
+
+                      img {
+                          width: unset;
+                      }
+                  }
+              }
+          }
+      }
+   }
+}
+

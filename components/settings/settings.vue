@@ -1,0 +1,206 @@
+<template>
+    <div class="settings">
+       <div class="topbar">
+            <!-- HEADING + AVATAR -->
+            <dashHeader :user="user">
+                <template #heading>
+                    Settings 
+                </template>
+            </dashHeader>
+       </div>
+       
+       <!-- SETTINGS -->
+       <div class="view-content">
+            <div class="summary border10">
+                <h2>
+                    Update And Manage Your Account
+                </h2>
+                
+                <ul>
+                    <li 
+                        v-for="item in settingsSummaryList"
+                        :key="item.title"
+                        class="base-text"
+                        @click="callCorrespondingSection(item.id)"
+                    >
+                        <svg 
+                            :width="item.dimension" :height="item.dimension" 
+                            :viewBox="item.viewBox" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" 
+                            v-html="item.icon"
+                        > </svg>
+                      
+                        <span>
+                            {{item.title}}
+                        </span>
+                       
+                    </li>
+                </ul>
+            </div>
+
+            <editProfile v-if="activeDetails === 1" />
+
+            <password v-if="activeDetails === 2" />
+
+            <helpdesk v-if="activeDetails === 3" />
+       </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: 'settingsSection',
+
+        data() {
+            return {
+               settingsSummaryList: [
+                  {
+                     id: 1,
+                     title: 'Edit Profile',
+                     icon: '<path d="M9.99992 10.6243C7.35825 10.6243 5.20825 8.47435 5.20825 5.83268C5.20825 3.19102 7.35825 1.04102 9.99992 1.04102C12.6416 1.04102 14.7916 3.19102 14.7916 5.83268C14.7916 8.47435 12.6416 10.6243 9.99992 10.6243ZM9.99992 2.29102C8.04992 2.29102 6.45825 3.88268 6.45825 5.83268C6.45825 7.78268 8.04992 9.37435 9.99992 9.37435C11.9499 9.37435 13.5416 7.78268 13.5416 5.83268C13.5416 3.88268 11.9499 2.29102 9.99992 2.29102Z" fill="#858282"/><path d="M17.1585 18.9583C16.8168 18.9583 16.5335 18.675 16.5335 18.3333C16.5335 15.4583 13.6001 13.125 10.0001 13.125C6.40013 13.125 3.4668 15.4583 3.4668 18.3333C3.4668 18.675 3.18346 18.9583 2.8418 18.9583C2.50013 18.9583 2.2168 18.675 2.2168 18.3333C2.2168 14.775 5.70846 11.875 10.0001 11.875C14.2918 11.875 17.7835 14.775 17.7835 18.3333C17.7835 18.675 17.5001 18.9583 17.1585 18.9583Z" fill="#858282"/>',
+                     viewBox: '0 0 20 20',
+                     dimension: 20
+                  },
+                  {
+                     id: 2,
+                     title: 'Password',
+                     icon: '<path d="M11.02 20.25H7.5C6.75 20.25 6.2 20.22 5.73 20.15C2.4 19.78 1.75 17.8 1.75 14.5V9.5C1.75 6.2 2.41 4.21 5.76 3.84C6.2 3.78 6.75 3.75 7.5 3.75H10.96C11.37 3.75 11.71 4.09 11.71 4.5C11.71 4.91 11.37 5.25 10.96 5.25H7.5C6.82 5.25 6.34 5.28 5.95 5.33C3.92 5.55 3.25 6.19 3.25 9.5V14.5C3.25 17.81 3.92 18.44 5.92 18.67C6.34 18.73 6.82 18.75 7.5 18.75H11.02C11.43 18.75 11.77 19.09 11.77 19.5C11.77 19.91 11.43 20.25 11.02 20.25Z" fill="#858282"/><path d="M16.5 20.25H15.02C14.61 20.25 14.27 19.91 14.27 19.5C14.27 19.09 14.61 18.75 15.02 18.75H16.5C17.18 18.75 17.66 18.72 18.05 18.67C20.08 18.45 20.75 17.81 20.75 14.5V9.5C20.75 6.19 20.08 5.56 18.08 5.33C17.66 5.27 17.18 5.25 16.5 5.25H15.02C14.61 5.25 14.27 4.91 14.27 4.5C14.27 4.09 14.61 3.75 15.02 3.75H16.5C17.25 3.75 17.8 3.78 18.27 3.85C21.6 4.22 22.25 6.2 22.25 9.5V14.5C22.25 17.8 21.59 19.79 18.24 20.16C17.8 20.22 17.25 20.25 16.5 20.25Z" fill="#858282"/><path d="M15 22.75C14.59 22.75 14.25 22.41 14.25 22V2C14.25 1.59 14.59 1.25 15 1.25C15.41 1.25 15.75 1.59 15.75 2V22C15.75 22.41 15.41 22.75 15 22.75Z" fill="#858282"/><path d="M6.69995 12.9992C6.56995 12.9992 6.43995 12.9692 6.31995 12.9192C6.19995 12.8692 6.08995 12.7992 5.98995 12.7092C5.89995 12.6092 5.81995 12.4992 5.76995 12.3792C5.71995 12.2592 5.69995 12.1292 5.69995 11.9992C5.69995 11.7392 5.80995 11.4792 5.98995 11.2892C6.35995 10.9192 7.02995 10.9192 7.40995 11.2892C7.58995 11.4792 7.69995 11.7392 7.69995 11.9992C7.69995 12.1292 7.66995 12.2592 7.61995 12.3792C7.56995 12.4992 7.49995 12.6092 7.40995 12.7092C7.30995 12.7992 7.19995 12.8692 7.07995 12.9192C6.95995 12.9692 6.82995 12.9992 6.69995 12.9992Z" fill="#858282"/><path d="M10.7 12.9992C10.57 12.9992 10.44 12.9692 10.32 12.9192C10.2 12.8692 10.09 12.7992 9.98995 12.7092C9.89995 12.6092 9.82995 12.4992 9.76995 12.3792C9.72995 12.2592 9.69995 12.1292 9.69995 11.9992C9.69995 11.7392 9.80995 11.4792 9.98995 11.2892C10.36 10.9192 11.04 10.9192 11.41 11.2892C11.59 11.4792 11.7 11.7392 11.7 11.9992C11.7 12.1292 11.67 12.2592 11.62 12.3792C11.57 12.4992 11.5 12.6092 11.41 12.7092C11.31 12.7992 11.2 12.8692 11.08 12.9192C10.96 12.9692 10.83 12.9992 10.7 12.9992Z" fill="#858282"/>',
+                     viewBox: '0 0 24 24',
+                     dimension: 24
+                  },
+                  {
+                     id: 3,
+                     title: 'Helpdesk',
+                     icon: '<path d="M17 18.4297H13L8.54999 21.3897C7.88999 21.8297 7 21.3598 7 20.5598V18.4297C4 18.4297 2 16.4297 2 13.4297V7.42969C2 4.42969 4 2.42969 7 2.42969H17C20 2.42969 22 4.42969 22 7.42969V13.4297C22 16.4297 20 18.4297 17 18.4297Z" stroke="#9C9CA4" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.0001 11.3594V11.1494C12.0001 10.4694 12.4201 10.1094 12.8401 9.8194C13.2501 9.5394 13.66 9.17941 13.66 8.51941C13.66 7.59941 12.9201 6.85938 12.0001 6.85938C11.0801 6.85938 10.3401 7.59941 10.3401 8.51941" stroke="#9C9CA4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.9955 13.75H12.0045" stroke="#141522" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+                     viewBox: '0 0 24 24',
+                     dimension: 24
+                  }
+               ],
+
+               profileDetails: [
+                  {
+                     title: 'Email Address',
+                     descr: 'obiianayo@gmail.com',
+                     editOn: false,
+                     input: {
+                           type: 'email',
+                           name: 'email',
+                           id: 'email'
+                     }
+                  },
+                  {
+                     title: 'Phone Number',
+                     descr: 'Add a phone number',
+                     editOn: false,
+                     input: {
+                           type: 'number',
+                           name: 'phone',
+                           id: 'phone'
+                     }
+                  },
+               ],
+
+               passwordInputs: [
+                  {
+                     label: 'Enter Old Password',
+                     type: 'password',
+                     name: 'old-password',
+                     id: 'old-password',
+                     isShown: false,
+                     model: 'old'
+                  },
+                  {
+                     label: 'Enter New Password',
+                     type: 'password',
+                     name: 'new-password',
+                     id: 'new-password',
+                     isShown: false,
+                     model: 'new'
+                  },
+                  {
+                     label: 'Confirm New Password',
+                     type: 'password',
+                     name: 'new-password-2',
+                     id: 'new-password-2',
+                     isShown: false,
+                     model: 'new2'
+                  },
+               ],
+
+               passwords: {
+                  old: null,
+                  new: null,
+                  new2: null
+               },
+
+               helpDeskFormData: {
+                  subject: null,
+                  message: null
+               },
+
+               socials: [
+                  {   
+                     icon: {
+                           folder: 'settings',
+                           fileName: 'facebook',
+                           format: 'svg',
+                           alt: 'facebook'
+                     },
+
+                     url: '/'
+                  },
+
+                  {   
+                     icon: {
+                           folder: 'settings',
+                           fileName: 'instagram',
+                           format: 'svg',
+                           alt: 'instagram'
+                     },
+                     
+                     url: '/'
+                  },
+
+                  {   
+                     icon: {
+                           folder: 'settings',
+                           fileName: 'twitter',
+                           format: 'svg',
+                           alt: 'twitter'
+                     },
+                     
+                     url: '/'
+                  }
+               ],
+
+               activeDetails: 1,
+            }
+        },
+
+        methods: {
+            callCorrespondingSection(itemId) {
+               this.activeDetails = itemId;
+               window.scrollTo(0, 0);
+            },
+
+            HIDE_SIDEBAR() {
+               if (window.innerWidth < 1200) {
+                    this.$store.commit('HIDE_SIDEBAR')
+               } 
+            }
+        },
+
+        computed: {
+            user() {
+               return JSON.parse(localStorage.getItem('UserDetails'))
+            }
+        },
+
+        mounted() {
+            // hide sidebar by default before the component is initialized
+            this.HIDE_SIDEBAR();
+
+            this.profileDetails[0].descr = this.user.email
+        },
+    }
+</script>

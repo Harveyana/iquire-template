@@ -1,0 +1,272 @@
+@import '../partials/base';
+@import '../partials/colors';
+@import '../partials/fonts';
+@import '../partials/mixins';
+@import '../partials/screens';
+
+.overview {
+   .topbar {
+      padding-bottom: 20px;
+   }
+
+   .toolbar {
+      @include flexColumn;
+      padding-top: 20px;
+      position: sticky;
+      top: 60px;
+      z-index: 4;
+      background: #F5F5F5;
+
+      .search {
+         input {
+            background: none;
+            padding-left: 20px;
+            margin-bottom: 20px;
+
+            &:focus {
+               border: 1px solid $blue;
+               color: $black
+            }
+         }
+      }
+
+      //sort bar
+      .sorts {
+         display: none; //display flex
+         font-weight: 400;
+
+         &>div {
+            position: relative;
+            padding-bottom: 20px;
+
+            //category sort
+            &:first-child {
+               margin-left: 10px;
+            }
+
+            &:not(:last-child) {
+               margin-right: 12px;
+            }
+
+            &>button {
+               color: $grey;
+               @include resetDefault;
+               @include hoverPointer;
+               @include flexAlignCenter;
+
+               svg {
+                  margin-right: 14px;
+               }
+            }
+
+            &:hover {
+               &>div.sortsList {
+                  display: block;
+               }
+
+               &>button {
+                  color: $black;
+                  @include hoverPointer;
+
+                  svg {
+                     path {
+                        fill: $black;
+                     }
+
+                     rect {
+                        fill: $black;
+                     }
+                  }
+               }
+            }
+
+         }
+
+         //sort categories dropdown
+         .sortsList {
+            display: none;
+            z-index: 4;
+            position: absolute;
+            margin-top: 10px;
+            padding: 20px;
+            background: $white;
+            width: 200px;
+
+            input {
+               display: none;
+
+               &:checked {
+                  &~label {
+                     border: 1px solid $blue;
+                  }
+               }
+            }
+
+            label {
+               display: block;
+               width: 100%;
+               margin-bottom: 18px;
+               border: 1px solid #F5F5F7;
+
+               &:hover {
+                  border: 1px solid $blue;
+               }
+            }
+
+            h3 {
+               margin-bottom: 18px;
+            }
+
+            button,
+            label {
+               @include hoverPointer;
+               padding: 9px 30px;
+            }
+
+            button {
+               text-align: center;
+            }
+
+         }
+      }
+
+      //750px
+      @include laps {
+         justify-content: space-between;
+         align-items: center;
+         flex-direction: row;
+         top: 76px;
+
+         .search {
+            width: min(50%, 500px);
+         }
+         
+         .sorts {
+            justify-content: flex-end;
+
+            & > div {
+               &:not(:last-child) {
+                  margin-right: 25px;
+               }
+            }
+         }
+         .sortsList {
+            margin-left: -50px;
+         }
+         #genSort {
+            margin-left: -90px;
+         }
+      }
+
+      //1200px 
+      @include desktop {
+         margin-bottom: 16px;
+         padding-top: 0;
+
+         .sorts {
+            & > div {
+               &:first-child {
+                     margin-left: 0;
+               }
+
+               &:not(:last-child) {
+                     margin-right: 60px;
+               } 
+
+               &:last-child {
+                     margin-right: 20px;
+               }
+            }
+         }
+      }
+   }
+
+   .loader {
+      margin-top: 100px;
+   }
+
+
+   .course-grid {
+      display: grid;
+      row-gap: 36px;
+
+      //750px
+      @include tabs {
+          display: grid;
+          grid-template-columns: repeat(2, calc(50% - 14px));
+          justify-content: space-between;
+          grid-auto-rows: 316px;
+          row-gap: 36px;
+ 
+          //course
+          &_item {
+             // max-width: 354px;
+             margin: unset;
+ 
+             &_details {
+ 
+                div {
+ 
+                      img {
+                         width: 16px;
+                      }
+                      
+                      &:not(:last-child) {
+                      }
+                }
+             }
+ 
+          }
+      }
+ 
+      //1440px
+      @include desktopX {
+          grid-template-columns: repeat(3, calc(33.3% - 15px));
+ 
+          //course
+          &_item {
+             // max-width: 354px;
+             margin: unset;
+ 
+             &_details {
+ 
+                div {
+ 
+                   img {
+                         width: 16px;
+                   }
+                   
+                   &:not(:last-child) {
+                   }
+                }
+             }
+ 
+          }
+      }
+ 
+   }
+   
+   .list-else {
+      margin-top: 20px;
+      @include gridCenter;
+      height: 200px;
+      width: 100%;
+      background: white;
+
+      p {
+         color: $blue;
+      }
+
+      button {
+         font-weight: 700;
+         width: min(70%, 400px);
+      }
+   }
+
+   //1200px 
+   @include desktop {
+      .topbar {
+         padding-bottom: 0 !important;
+      } 
+   }
+}

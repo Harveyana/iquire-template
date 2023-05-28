@@ -1,0 +1,400 @@
+@import '../partials/base';
+@import '../partials/colors';
+@import '../partials/fonts';
+@import '../partials/mixins';
+@import '../partials/screens';
+
+.container {
+   min-height: 100vh;
+   min-width: 280px;
+
+   &>div {
+
+      //slideshow 
+      &:first-child {}
+
+      //forms + interactions
+      &:nth-child(2) {
+         z-index: 2;
+         background: $white;
+         padding-top: 13vh;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+
+         //logo
+         a:nth-of-type(1) {
+            display: block;
+            margin: 0px auto 50px auto
+         }
+
+
+         &>div {
+            width: 90%;
+            max-width: 385px;
+            color: $black;
+       
+            h2,
+            p {
+               text-align: center
+            }
+
+            h2 {
+               margin-bottom: 1.11vh
+            }
+
+            form {
+
+               //password validation
+               &>div {
+                  margin-top: 45px;
+
+                  &>span {
+                     display: block;
+                     margin-bottom: 10px;
+
+
+                     svg {
+                        margin-right: 9.17px;
+                     }
+                  }
+
+                  .condition-null {
+                     color: #828282;
+                  }
+
+                  .condition-pass {
+                     color: #66C27C;
+
+                     path {
+                        fill: #66C27C;
+                     }
+
+                  }
+               }
+            }
+
+            //subheading
+            &>p {
+               margin-bottom: 3.78vh;
+               font-weight: 400;
+
+               a {
+                  color: $blue;
+               }
+            }
+
+            label {
+               color: $black;
+               font-weight: 500;
+            }
+
+            input {
+
+               padding-left: 20px;
+               margin-bottom: 1.78vh;
+               margin-top: 1.11vh;
+               font-weight: 400;
+
+               &[type="submit"] {
+                  color: white;
+                  @include hoverPointer;
+                  margin-bottom: 2.22vh;
+                  margin-top: 41px;
+                  padding-left: 0;
+                  padding: 14px 0px;
+                  font-weight: 500;
+
+                  &:hover {
+                     background: #1b205fed;
+                  }
+               }
+            }
+
+            .login-error-mssg {
+               display: block;
+               color: rgb(253, 97, 97);
+               margin-top: -10px;
+               margin-bottom: 10px;
+            }
+
+
+            //forgot password
+            &>a {
+               display: block;
+               width: max-content;
+               margin: auto;
+               color: #9C9CA4;
+            }
+
+            //google & facebook signin
+            .third-party-signup {
+            //    margin-bottom: 50px;
+
+               p {
+                  text-align: center;
+                  margin-top: 4.89vh;
+                  margin-bottom: 2.67vh;
+               }
+
+               button {
+                  @include hoverPointer;
+                  background: $white;
+                  color: #2E2C34;
+                  @include flexCenter;
+                  margin-bottom: 2.22vh;
+
+                  img {
+                     margin-right: 12px;
+                  }
+
+                  &:hover {
+                     border: 1px solid $black;
+                  }
+
+               }
+            }
+         }
+
+         .account-created {
+            text-align: center;
+    
+            img {
+               margin: 20px auto 100px;
+              
+            }
+         }
+
+         .account-created-verf {
+            form {
+               label {
+                  font-weight: 500;
+                  display: block;
+                  margin-bottom: 10px;
+               }
+   
+               & > div {
+                  margin-top: unset;
+               }
+   
+               //id type
+               select {
+                  display: none;
+               }
+               .dummy-id-catg {
+                  position: relative;
+   
+                  &_select {
+                     padding-right: 20px;
+                     padding-left: 20px;
+                     @include hoverPointer;
+                     color: $grey;
+                     margin-bottom: 1.78vh;
+                  }
+   
+                  &_options {
+                     position: absolute;
+                     background: $white;
+                     width: 100%;
+                     overflow: hidden;
+                     border-radius: 10px;
+                     overflow: hidden;
+                     box-shadow: 0px 244px 98px rgba(0, 0, 0, 0.01), 0px 137px 82px rgba(0, 0, 0, 0.05), 0px 61px 61px rgba(0, 0, 0, 0.09), 0px 15px 34px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+   
+                     & > div {
+                        padding: 14px;
+   
+                        &:hover {
+                           color: $blue;
+                           background: rgba(0, 0, 0, 0.058);
+                     }
+                     }
+                  }
+               }
+   
+               //id file
+               input[type="file"] {
+                  display: none;
+               }
+               .dummy-id-doc-input {
+                  padding-right: 20px;
+                  padding-left: 20px;
+                  margin-bottom: 1.78vh;
+                  @include hoverPointer;
+               }
+   
+               //website
+   
+   
+               //socials
+               .id-social-field {
+                  @include flexAlignCenter;
+                  padding: 0px 0px 0px 20px;
+                  position: relative;
+   
+                  &:not(:last-of-type) {
+                     margin-bottom: 10px;
+                  }
+   
+   
+                  //socials select + list
+                  & > div {
+                     @include hoverPointer;
+                     position: relative;
+   
+                     //select
+                     & > div {
+                        @include flexAlignCenter;
+   
+                        svg {
+                           width: 20px;                     }
+                     }
+                  }
+   
+                  ul {
+                     position: absolute;
+                     background: $white;
+                     margin-top: 18px;
+                     margin-left: -20px;
+                     border-radius: 10px;
+                     overflow: hidden;
+                     box-shadow: 0px 244px 98px rgba(0, 0, 0, 0.01), 0px 137px 82px rgba(0, 0, 0, 0.05), 0px 61px 61px rgba(0, 0, 0, 0.09), 0px 15px 34px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+   
+                     li {
+                        padding: 10px 38px 10px 15px;
+   
+                        &:hover {
+                           color: $blue;
+                           background: rgba(0, 0, 0, 0.058);
+                     }
+                     }
+   
+                     label {
+                        font-weight: 400;
+                        margin-bottom: unset;
+                     }
+                  }
+   
+                  input[type="radio"] {
+                     display: none;
+                  }
+   
+                  input[type="text"] {
+                     @include resetDefault;
+                     padding: 14px 10px;
+                     margin: unset;
+                     height: 100%;
+                     width: 100%;
+                  }
+               }
+               //new social
+               button {
+                  color: $blue;
+                  display: block;
+                  margin-top: 2px;
+                  @include resetDefault;
+                  @include hoverPointer;
+               }
+            }
+         }
+      }
+   }
+
+   //992px
+   @include laps {
+      display: flex;
+
+      &>div {
+         width: 50%;
+
+         //sildeshow + headings
+         &:first-child {}
+
+         //forms + interactions
+         &:nth-child(2) {
+
+            
+            a:nth-of-type(1) {
+               display: none;
+            }
+
+            & > div {
+
+               h2, p {
+                  text-align: left
+               }
+            }
+
+            .account-created {
+               p {
+                  margin-bottom: 61px;
+               }
+               img {
+                  margin: auto;
+                  margin-top: 0;
+                  margin-bottom: 183px;
+               }
+            }
+         }
+      }
+   }
+
+   @include laps-VW {
+      &>div {
+
+         //sildeshow + headings
+         &:first-child {}
+
+         //forms + interactions
+         &:nth-child(2) {
+            padding-top: 8vh;
+
+            &>div {
+               transform: scale(0.92);
+
+               //google & facebook signin
+               &>div:last-child {
+                  margin-bottom: 0;
+               }
+            }
+
+         }
+      }
+   }
+
+   //1200px
+   @include desktop {
+      &>div {
+
+         //sildeshow 
+         &:first-child {
+
+            //representing h1
+            .large-text {
+               font-size: 2.5rem;
+            }
+         }
+
+         //forms + interactions
+         &:nth-child(2) {}
+      }
+   }
+
+   //1440px
+   @include desktopX {
+      &>div {
+
+         //sildeshow
+         &:first-child {
+
+            //representing h1
+            .large-text {
+               font-size: 3rem;
+            }
+         }
+
+         //forms + interactions
+         &:nth-child(2) {}
+      }
+   }
+}

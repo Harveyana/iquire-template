@@ -1,0 +1,148 @@
+
+//750px
+@include tabs {
+    //====== DASHBOARD
+    .dashboard {
+        .dash-content {
+            
+         }
+        .toolbar {
+            
+        }
+
+        .course-grid {
+         
+        }
+
+        .payments {
+            &_receipt {
+               
+            }
+        }
+
+        .settings {
+            .summary {
+              
+
+                
+            }
+
+            .details {
+               
+            }
+            .profile {
+               
+            }
+            .helpdesk {
+
+            }
+        }
+
+        .modal {
+      
+
+        }
+
+        .logout {
+
+           
+        }
+
+        .course-detail {
+           
+        }
+
+        //payment modal
+        .subscribe {
+           
+        }
+
+        .subscribed {
+
+        }
+    }
+}
+
+@include laps-VW {
+}
+
+//992px
+@include laps {
+   //======= BASE STYLING
+   
+
+   //====== DASHBOARD
+   .dashboard {
+      .settings {
+
+         
+      }
+
+      .course-detail {
+        
+      }
+
+      .subscribe {
+
+      }
+   }
+
+}
+
+//1200px
+@include desktop {
+   //=======DASHBOARD 
+   .dashboard {
+      @include flexSpread;
+      min-width: 100vw;
+      min-height: 100vh;
+
+      .sidebar {
+          
+      }
+      
+      .header {
+          
+      }
+      .dash-content {
+        
+      }
+      .overview {
+         
+      }
+      .toolbar {
+           
+      }
+
+      .courses {
+         
+      }
+
+      .settings {
+         
+      }
+
+   
+      //PAYMENTS
+      .payments {
+         
+            &_history {
+             
+            }
+
+            .payments_row {
+             
+            }
+      }
+   } 
+}
+
+@include desktopX {
+   //=======DASHBOARD 
+   .dashboard {
+      
+      .course-grid {
+        
+      }
+   }
+}

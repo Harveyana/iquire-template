@@ -1,0 +1,681 @@
+@import '../partials/base';
+@import '../partials/colors';
+@import '../partials/fonts';
+@import '../partials/mixins';
+@import '../partials/screens';
+
+.overview {
+   .topbar {
+      padding-bottom: 20px;
+   }
+
+   .toolbar {
+      @include flexColumn;
+      padding-top: 20px;
+      position: sticky;
+      top: 60px;
+      z-index: 4;
+      background: #F5F5F5;
+
+      .search {
+         input {
+            background: none;
+            padding-left: 20px;
+            margin-bottom: 20px;
+
+            &:focus {
+               border: 1px solid $blue;
+               color: $black
+            }
+         }
+      }
+
+      //sort bar
+      .sorts {
+         display: none; //display flex
+         font-weight: 400;
+
+         &>div {
+            position: relative;
+            padding-bottom: 20px;
+
+            //category sort
+            &:first-child {
+               margin-left: 10px;
+            }
+
+            &:not(:last-child) {
+               margin-right: 12px;
+            }
+
+            &>button {
+               color: $grey;
+               @include resetDefault;
+               @include hoverPointer;
+               @include flexAlignCenter;
+
+               svg {
+                  margin-right: 14px;
+               }
+            }
+
+            &:hover {
+               &>div.sortsList {
+                  display: block;
+               }
+
+               &>button {
+                  color: $black;
+                  @include hoverPointer;
+
+                  svg {
+                     path {
+                        fill: $black;
+                     }
+
+                     rect {
+                        fill: $black;
+                     }
+                  }
+               }
+            }
+
+         }
+
+         //sort categories dropdown
+         .sortsList {
+            display: none;
+            z-index: 4;
+            position: absolute;
+            margin-top: 10px;
+            padding: 20px;
+            background: $white;
+            width: 200px;
+
+            input {
+               display: none;
+
+               &:checked {
+                  &~label {
+                     border: 1px solid $blue;
+                  }
+               }
+            }
+
+            label {
+               display: block;
+               width: 100%;
+               margin-bottom: 18px;
+               border: 1px solid #F5F5F7;
+
+               &:hover {
+                  border: 1px solid $blue;
+               }
+            }
+
+            h3 {
+               margin-bottom: 18px;
+            }
+
+            button,
+            label {
+               @include hoverPointer;
+               padding: 9px 30px;
+            }
+
+            button {
+               text-align: center;
+            }
+
+         }
+      }
+
+      //750px
+      @include laps {
+         justify-content: space-between;
+         align-items: center;
+         flex-direction: row;
+         top: 76px;
+
+         .search {
+            width: min(50%, 500px);
+         }
+         
+         .sorts {
+            justify-content: flex-end;
+
+            & > div {
+               &:not(:last-child) {
+                  margin-right: 25px;
+               }
+            }
+         }
+         .sortsList {
+            margin-left: -50px;
+         }
+         #genSort {
+            margin-left: -90px;
+         }
+      }
+
+      //1200px 
+      @include desktop {
+         margin-bottom: 16px;
+         padding-top: 0;
+
+         .sorts {
+            & > div {
+               &:first-child {
+                     margin-left: 0;
+               }
+
+               &:not(:last-child) {
+                     margin-right: 60px;
+               } 
+
+               &:last-child {
+                     margin-right: 20px;
+               }
+            }
+         }
+      }
+   }
+}
+
+.list-else {
+   margin-top: 20px;
+   @include gridCenter;
+   height: 200px;
+   width: 100%;
+   background: white;
+
+   p {
+      color: $blue;
+   }
+
+   button {
+      font-weight: 700;
+      width: min(70%, 400px);
+   }
+}
+
+
+.course-detail {
+   & > div {
+
+      //main course
+      &:first-child {
+         margin-bottom: 30px;
+
+         //video container + modules
+         &>div {
+
+            //video conatainer
+            &:first-child {
+               margin-bottom: 20px;
+            //    max-width: 616px;
+            }
+
+            //modules
+            &:nth-child(2) {}
+         }
+      }
+
+      //related courses
+      &:nth-child(2) {}
+   }
+
+   .video {
+
+      &-container {
+         width: 100%;
+         position: relative;
+         border-bottom-left-radius: 0;
+         border-bottom-right-radius: 0;
+         overflow-y: hidden;
+         background: $white;
+
+         //center play buttton
+         &>button {
+            @include resetDefault;
+            @include flexCenter;
+            @include hoverPointer;
+            position: absolute;
+            transform: 1s;
+            opacity: 0;
+            display: none;
+
+
+            //== how to center absolutely positioned element
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            //========================
+
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            background: #EED7BE;
+
+            svg {
+               width: 15px;
+            }
+         }
+
+         &:hover {
+            &>button {
+               opacity: 1;
+            }
+         }
+      }
+
+      //video element
+      width: 100%;
+      min-width: 100%;
+
+      &-details {
+         background: $white;
+         padding: 30px;
+         border-top-left-radius: 0;
+         border-top-right-radius: 0;
+
+         h2 {
+            margin-bottom: 20px;
+         }
+
+         &>div {
+
+            //course stats
+            &:first-of-type {
+               margin-bottom: 20px;
+               display: flex;
+               color: $grey;
+
+               span {
+                  display: inline-block;
+                  @include flexAlignCenter;
+                  margin-right: 10px;
+               }
+
+               img {
+                  margin-right: 5px;
+                  width: 12px;
+               }
+            }
+
+            //course description & reviews
+            &:nth-of-type(2) {
+               border-bottom: 1px solid #F5F5F7;
+
+               //headings & details
+               &>div {
+
+                  //headings
+                  &:first-child {
+                     display: flex;
+                     border-bottom: 1px solid #F5F5F7;
+
+                     &>div {
+                        @include hoverPointer;
+                        text-align: center;
+                        font-weight: 500;
+                        width: min(50%, 120px);
+                        padding-bottom: 15px;
+                        position: relative;
+                        color: $grey;
+
+                        &.active {
+                           color: $black;
+
+                           &:after {
+                              content: '';
+                              position: absolute;
+                              bottom: 0;
+                              left: 0;
+                              background: $blue;
+                              height: 3px;
+                              width: 100%;
+                           }
+                        }
+                     }
+                  }
+
+                  //details
+                  &:nth-child(2) {
+                     &>div {
+                        margin-top: 30px;
+                        padding-bottom: 30px;
+                        margin-bottom: 30px;
+                        border-bottom: 1px solid #F5F5F7;
+
+                        //about
+                        &:first-child {}
+
+                        //reviews
+                        &:nth-child(2) {
+                           &>div {
+                              margin-bottom: 20px;
+
+                              p {
+                                 &:not(:last-child) {
+                                    margin-bottom: 12.5px;
+
+                                 }
+
+                                 //review author
+                                 &:first-child {}
+
+                                 //stars & date
+                                 &:nth-child(2) {
+                                    @include flexSpread;
+                                    align-items: center;
+
+                                    font-size: 12px;
+
+                                    span {
+                                       &:nth-child(2) {
+                                          color: $grey
+                                       }
+                                    }
+                                 }
+                              }
+                           }
+                        }
+
+                        //tutor bio 
+                        &:nth-child(3) {
+                           span {
+                              color: $blue;
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+
+      &-modules {
+         padding: 30px;
+         background: $white;
+         height: max-content;
+
+         //course title
+         h3 {
+            margin-bottom: 10px;
+         }
+
+         &>div {
+
+            //course stats
+            &:first-of-type {
+               color: $black;
+               font-weight: 400;
+               margin-bottom: 30px;
+               display: flex;
+
+               span {
+                  display: inline-block;
+                  @include flexAlignCenter;
+                  margin-right: 10px;
+               }
+
+               img {
+                  margin-right: 5px;
+                  width: 12px;
+               }
+
+            }
+
+            //module stats
+            &:nth-of-type(2) {
+               @include flexSpread;
+               margin-bottom: 30px;
+
+               span {
+                  &:first-child {
+                     color: $black;
+                     font-weight: 500;
+                  }
+
+                  &:nth-child(2) {
+                     color: $grey;
+                  }
+               }
+            }
+
+            //modules
+            &:nth-of-type(3) {
+               ol {
+                  list-style: lower-roman;
+
+                  li {
+                     @include flexSpread;
+                     align-items: center;
+                     color: $grey;
+                     margin-bottom: 20px;
+
+                     &>div {
+                        width: 75%;
+                        display: flex;
+                        align-items: center;
+
+                        span {
+                           &:first-of-type {
+                              background: #F5F5F7;
+                              color: $black;
+                              font-weight: 500;
+                              display: inline-block;
+                              padding: 4.5px 10.5px;
+                              border-radius: 8px;
+                              margin-right: 20px;
+                              height: max-content;
+                           }
+
+                           &:nth-child(2) {
+                              display: inline-block;
+                           }
+                        }
+                     }
+
+                     &>span {
+                        display: inline-block;
+                        width: 20%;
+                     }
+                  }
+               }
+            }
+         }
+
+         &>button {
+            font-weight: 500;
+            @include hoverPointer;
+         }
+
+         .main-modules {
+            ol {
+               li {
+
+                  &:hover {
+                     &>div {
+                        span {
+                           &:nth-child(2) {
+                              @include hoverPointer;
+                              text-decoration: underline !important;
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   //750px
+   @include tabs {
+      .video {
+
+         &-container {
+             //center play button
+             & > button {
+                 width: 50px;
+                 height: 50px;
+
+                 svg {
+                     width: unset;
+                 }
+             }
+         }
+
+         &-controls {
+             button {
+                 height: 21px;
+                 width: max-content;
+                 margin-right: 11.04px;
+
+                 
+                 svg {
+                     width: unset;
+                     height: unset;
+                 }
+             }
+         }
+
+         &-details {
+
+             & > div {
+                 
+                 //course stats
+                 &:first-of-type {
+                     margin-bottom: 30px;
+
+                     span {
+                         margin-right: 25.5px;
+                     }
+
+                     img {
+                         margin-right: 7.27px;
+                         width: unset;
+                     }
+                 }
+
+                 //course description & reviews
+                 &:nth-of-type(2) {
+                     
+                     //headings & details
+                     & > div {
+                         
+                         //headings 
+                         &:first-child {
+
+                         }
+                     }
+                 }
+             }
+         }
+
+         &-modules {
+            & > div {
+                 //modules
+                 &:nth-of-type(3) {
+                 
+                     ol {
+
+                         li {
+                             margin-bottom: 30px;
+
+                             &:last-of-type {
+                                 margin-bottom: 35.3px;
+                             }
+                         }
+                     }
+                 }
+            }
+        }
+      }
+   }
+
+   //992px
+   @include laps {
+      & > div {
+         //main course
+         &:first-child {
+            margin-bottom: 48px;
+            @include flexSpread;
+
+            //video container + modules
+            & > div {
+
+               //video conatainer  
+               &:first-child {
+                     margin-right: 30px;
+                     margin-bottom: 0;
+               }
+
+               &:nth-child(2) {
+                     min-width: 350px;
+               }
+            }
+         }
+         
+         //related courses
+         &:nth-child(2) {
+
+         }
+      }
+
+      .video {
+            
+      }
+   }
+}
+
+.related-courses {
+   margin-bottom: 50px;
+
+   & > div {
+
+      //heading + related course slide controls
+      &:first-child {
+         @include flexSpread;
+
+         h3 {
+            margin-bottom: 29px;
+         }
+
+         button {
+            @include resetDefault;
+
+            &:first-child {
+               margin-right: 27.91px;
+            }
+
+            &:hover {
+               path {
+                  stroke: $black;
+               }
+            }
+         }
+      }
+
+      //related courses slide
+      &:nth-child(2) {
+         width: 100%;
+         overflow-x: scroll;
+         scroll-behavior: smooth;
+         display: flex;
+
+         //these styles override ealier written '.course' styles
+         & > div {
+            min-width: 354px;
+            max-width: 354px;
+            margin: 0 30px 0 0;
+
+            &:last-child {
+               margin-right: 0;
+            }
+         }
+      }
+   }
+}

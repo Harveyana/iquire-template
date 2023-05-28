@@ -1,0 +1,129 @@
+@import '../partials/base';
+@import '../partials/colors';
+@import '../partials/fonts';
+@import '../partials/mixins';
+@import '../partials/screens';
+
+.signup_slideshow {
+   position: relative;
+   min-height: 100%;
+   display: none;
+
+   &_content {
+      @include flexCenter;
+      width: 100%;
+      height: 100%;
+
+      &>div {
+         color: $white;
+         width: 81.5%;
+         position: absolute;
+         bottom: 87px;
+
+         a {
+            display: inline-block;
+            margin-bottom: 30px;
+         }
+
+         h1 {
+            font-weight: 700;
+            margin-bottom: 1.11vh;
+         }
+
+         p {
+            font-weight: 100;
+            margin-bottom: 3.33vh;
+         }
+
+         //SLIDE SHOW CONTROLS
+         &>div {
+            display: flex;
+
+            &>div {
+               background: rgba(255, 255, 255, 0.3);
+               width: 30px;
+               margin-right: 5px;
+               height: 4px;
+               border-radius: 50px;
+
+               &.active {
+                  background: $white;
+               }
+            }
+         }
+      }
+   }
+
+   //992px
+   @include laps {
+      display: flex;
+      width: 50.5%;
+      height: 100vh;
+      position: relative;
+
+
+      &_content {
+         position: relative;
+         z-index: 2;
+
+         a {
+            margin-bottom: 0;
+         }
+      }
+
+      &_images {
+         height: 100%;
+         position: absolute;
+         z-index: 0;
+         top: 0;
+         left: 0;
+         display: flex;
+
+         div {
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+         }
+      }
+
+      //representing h1
+      .large-text {
+         font-size: 2rem;
+      }
+   }
+
+   //1200px
+   @include desktop {
+      &_content {
+         & > div {
+            a {
+               margin-bottom: 20px;
+            }
+         }
+      }
+
+      
+      //representing h1
+      .large-text {
+         font-size: 2.5rem;
+      }
+   }
+
+   //1440px
+   @include desktopX {
+      &_images {
+         & > div {
+            a {
+               margin-bottom: 30px;
+            }
+         }
+      }
+
+      //representing h1
+      .large-text {
+         font-size: 3rem;
+      }
+   }
+
+}

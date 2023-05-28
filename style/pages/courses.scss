@@ -1,0 +1,92 @@
+@import '../partials/base';
+@import '../partials/colors';
+@import '../partials/fonts';
+@import '../partials/mixins';
+@import '../partials/screens';
+
+.courses {
+   .topbar {
+      padding-bottom: 20px;
+   }
+
+   .loader {
+      margin-top: 100px;
+   }
+}
+
+.course-grid {
+   display: grid;
+   row-gap: 36px;
+
+   //750px
+   @include tabs {
+       display: grid;
+       grid-template-columns: repeat(2, calc(50% - 14px));
+       justify-content: space-between;
+       grid-auto-rows: 316px;
+       row-gap: 36px;
+
+       //course
+       &_item {
+          // max-width: 354px;
+          margin: unset;
+
+          &_details {
+
+             div {
+
+                   img {
+                      width: 16px;
+                   }
+                   
+                   &:not(:last-child) {
+                   }
+             }
+          }
+
+       }
+   }
+
+   //1440px
+   @include desktopX {
+       grid-template-columns: repeat(3, calc(33.3% - 15px));
+
+       //course
+       &_item {
+          // max-width: 354px;
+          margin: unset;
+
+          &_details {
+
+             div {
+
+                img {
+                      width: 16px;
+                }
+                
+                &:not(:last-child) {
+                }
+             }
+          }
+
+       }
+   }
+
+ }
+
+.list-else {
+   margin-top: 20px;
+   @include gridCenter;
+   height: 200px;
+   width: 100%;
+   background: white;
+
+   p {
+      color: $blue;
+   }
+
+   button {
+      font-weight: 700;
+      width: min(70%, 400px);
+   }
+}
