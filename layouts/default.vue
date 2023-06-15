@@ -1,5 +1,7 @@
 <template>
    <main class="dashboard">
+      <logoLoader v-show="logoLoader.isShown"/>
+
       <!-- >>>>>>TOAST -->
       <mainToast />
       
@@ -42,6 +44,10 @@
             logoutModal: {
                isShown: false,
                name: 'logout'
+            },
+            
+            logoLoader: {
+               isShown: true
             }
          }
       },
@@ -123,16 +129,47 @@
             this.$store.state.app.userTransactions === null ?
                this.$store.dispatch('GET_THIS_USERS_TRANSACTIONS') : console.log('User transactions in store')
          },
+
+         ADD_ESC_LISTENER() {
+            document.addEventListener('keydown', (e)=> {
+               if (e.key === 'Escape') {
+                  this.CLOSE_MENUS()
+               }
+            })
+         }
       },
 
       created() {
+         setTimeout(()=> {
+            this.logoLoader.isShown = false
+         }, 500)
+
          this.$nuxt.$on('TOGGLE_MENU', ($event) => this.TOGGLE_SIDEBAR($event))
          this.$nuxt.$on('CLOSE_MENU', ($event) => this.HIDE_SIDEBAR($event))
          this.$nuxt.$on('EMIT_LOGOUT', ($event) => this.INIT_LOGOUT($event))
          this.$nuxt.$on('TOGGLE_MODAL', ($event) => this.CLOSE_MENUS($event))
       },
 
-      mounted () {         
+      mounted () {  
+         const user = JSON.parse(localStorage.getItem('user'))
+         const userIsLoggeIn = JSON.parse(localStorage.getItem('userIsLoggedIn'))
+
+         console.log(user)
+
+         if(user && userIsLoggeIn) {
+            if (user.type != 'user') {
+               window.location.href = `https://${user.type.toLowerCase()}.iquire.io`
+            }
+         }
+         else {
+            this.$router.push({
+               path: '/login',
+               query: { redirect: this.$route.fullPath}
+            })
+         }
+
+         this.ADD_ESC_LISTENER()
+         
          this.$store.commit('HIDE_SIDEBAR');
          
          this.CHECK_FOR_USER_INFO()

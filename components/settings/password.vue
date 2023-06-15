@@ -276,6 +276,7 @@
                   this.CHANGE_PASSWORD()
                }
          },
+
          async CHANGE_PASSWORD() {
             this.$refs.pasdUpdateBtn.disabled = true
             this.$refs.pasdUpdateBtn.value = 'Updating..'
@@ -285,16 +286,27 @@
             await axios.put('https://us-central1-dulcet-order-370109.cloudfunctions.net/user/password', details)
                .then((response) => {
                   console.log(response.data)
-                  this.$store.commit('HIDE_TOAST')
-                  this.$store.commit('SHOW_TOAST', 'Updated')
-
-                  setTimeout(() => {
-                     this.$store.commit('HIDE_TOAST')
-                  }, 1000)
+                  this.TOAST_PING('Updated')
+               
+                  this.REST_FORM();
+               })
+               .catch((error) => {
+                  console.log(error)
+                  this.TOAST_PING('Update failed')
 
                   this.REST_FORM();
-               })    
+               })
          },
+
+         TOAST_PING(message) {
+            this.$store.commit('SHOW_TOAST', message)
+
+            setTimeout(() => {
+               this.$store.commit('HIDE_TOAST')
+            }, 1000);
+               
+         },
+         
          REST_FORM() {
             this.$refs.pasdUpdateBtn.value = 'Update'
             this.$refs.pasdUpdateBtn.disabled = false

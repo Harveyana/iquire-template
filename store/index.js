@@ -26,8 +26,6 @@ export const state = () => ({
             image: 'image2'
          }, 
       ],
-
-      activeSlide: 0
    },
 
    app: {
@@ -193,7 +191,7 @@ export const actions = ({
       await axios.get(`https://us-central1-dulcet-order-370109.cloudfunctions.net/course/UserCourses?userId=${state.app.user.uid}`)
          .then((response) => {
 
-            const courses = response.data.filter((course) =>  course.id != 'How to bake1671545117124')
+            const courses = response.data.filter((course) =>  course.id != 'Culinary Disrupt.1672311260475')
             commit('SET_USER_COURSES', courses)
          })
    },

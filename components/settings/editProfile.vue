@@ -33,6 +33,7 @@
                   :type="item.input.type"
                   :name="item.input.name"
                   :id="item.input.id"
+                  :placeholder="item.input.placeholder"
                   class="small-text border10 primary-input"
                   v-model="newProfileDetails[item.id]"
                />
@@ -85,7 +86,7 @@
       data() {
          return {
             profileDetails: [
-               {
+                {
                   title: 'Email Address',
                   id: 'email',
                   editOn: false,
@@ -93,6 +94,7 @@
                   input: {
                      type: 'email',
                      name: 'email',
+                     placeholder: ' ',
                      id: 'email'
                   }
                },
@@ -105,7 +107,8 @@
                   input: {
                      type: 'number',
                      name: 'phone',
-                     id: 'phone'
+                     id: 'phone',
+                     placeholder: '2340000000000',
                   }
                }
             ],
@@ -176,19 +179,32 @@
          },
 
          async UPDATE_PHONE_NUMBER(item) {
-            item.loading = true
-            //code for backend
+            if(['', ' ', null, undefined].includes(this.newProfileDetails.phoneNumber)) {
 
-            const details = {userId: this.user.uid, phoneNumber: `+${this.newProfileDetails.phoneNumber}`}
+            }
+            else {
+               item.loading = true
 
-            await axios.put('https://us-central1-dulcet-order-370109.cloudfunctions.net/user/phoneNumber', details)
-            .then((response)=>{
-               console.log(response.data)
-                  // refreshes user state
-                  this.CHECK_AUTH_STATE()
+               const details = {userId: this.user.uid, phoneNumber: `+${this.newProfileDetails.phoneNumber}`}
+
+               await axios.put('https://us-central1-dulcet-order-370109.cloudfunctions.net/user/phoneNumber', details)
+               .then((response)=>{
+                  console.log(response.data)
+                     // refreshes user state
+                     this.CHECK_AUTH_STATE()
+                     item.editOn = false;
+                     item.loading = false;
+               })
+               .catch((error) => {
                   item.editOn = false;
                   item.loading = false;
-            })
+                  this.$store.commit('SHOW_TOAST', 'Update failed')
+
+                  setTimeout(() => {
+                     this.$store.commit('HIDE_TOAST')
+                  }, 3000);
+               })
+            }
          },
 
          async UPDATE_PROFILE_PHOTO() {

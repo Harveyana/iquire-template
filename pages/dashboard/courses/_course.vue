@@ -1,5 +1,18 @@
 <template>
    <div class="overview">
+      <!-- >>>>>>PDF VIEW -->
+      <div class="pdf-view" v-if="embededPDF.isShown">
+         <div class="pdf-view_close">
+            <hamCloseCircle />
+         </div>
+
+         <div class="pdf-view_inner">
+            <defaultLoader v-if="embededPDF.loading"/>
+            <iframe :src="embededPDF.src" v-show="!embededPDF.loading"  @load="embededPDF.loading = false" ></iframe>
+         </div>
+      </div>
+
+      <!-- >>>>>>TOP BAR -->
       <div class="topbar">
          <!-- HEADING + AVATAR -->
          <dashHeader :user="user">
@@ -75,6 +88,10 @@
                         <div :class="{active: detailInView === 3}" @click="detailInView = 3">
                            Tutor Bio
                         </div>
+
+                        <div v-if="mainCourse && (mainCourse.Modules.filter((modul) => modul.modulePDF != null)).length > 0" :class="{active: detailInView === 4}" @click="detailInView = 4">
+                           Docs
+                        </div>
                      </div>
 
                      <!-- DETAILS -->
@@ -118,6 +135,32 @@
                                  <!-- Email: <br />
                                  <span> obiianayo@gmail.com </span> -->
                               </p>
+                        </div>
+
+                        <div v-if="mainCourse && detailInView === 4" >
+                           <!-- MODULES DOCS -->
+                           <div>
+                              <!-- MODULES DOCS -->
+                              <div class="small-text">
+                                 <ol>
+                                    <li
+                                       v-for="(modul, index) in mainCourse.Modules.filter((modul) => modul.modulePDF != null)"
+                                       :key="modul.moduleTitle"
+                                       class="small-text"
+                                    >
+                                       <div>
+                                          <span class="small-text">
+                                             {{ mainCourse.Modules.indexOf(modul) + 1 }}
+                                          </span>
+
+                                          <span  @click="CALL_UP_PDF(modul.modulePDF)">
+                                             {{ modul.moduleTitle.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}}
+                                          </span>
+                                       </div>
+                                    </li>
+                                 </ol>
+                              </div>
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -249,7 +292,7 @@
             <!-- RELATED COURSES SLIDE -->
             <div ref="relatedCoursesSlide">
                <courseCard
-                  v-for="course in courses"
+                  v-for="course in courses.slice(0, 4)"
                   :key="course.courseId"
                   :course="course"
                />
@@ -276,6 +319,12 @@
 
             coursePreviewFromServer: null,
 
+            embededPDF: {
+               isShown: false,
+               loading: true,
+               src: null
+            },
+
             subscribeModal: {
                isShown: false,
                name: 'subscribe'
@@ -294,6 +343,14 @@
          }
       },
 
+      head() {
+         return {
+            title: 'iQuire | ' + 
+               this.$route.params.course.substring(0, this.$route.params.course.length-13)
+               .replaceAll('-', ' ').replace(/(^\w|\s\w)/g, m => m.toUpperCase())
+         }
+      },
+
       computed: {
          isTabScreen() {
             if(process.client) {
@@ -301,7 +358,7 @@
             }
          },
          user() {
-            return this.$store.state.app.user
+            return JSON.parse(localStorage.getItem('user'))
          },
          courses(){
             return this.$store.state.courses
@@ -364,10 +421,35 @@
                })
             
          },
+
+         CLOSE_MODALS() {
+            this.CLOSE_PDF()
+         },
+
+         CALL_UP_PDF(pdfURL) {
+            this.embededPDF.src = pdfURL; this.embededPDF.isShown = true
+         },
+
+         CLOSE_PDF() {
+            this.embededPDF.isShown = false; this.embededPDF.src = null; this.embededPDF.loading = true; 
+         },
+
+         ADD_ESC_LISTENER() {
+            document.addEventListener('keydown', (e)=> {
+               if (e.key === 'Escape') {
+                  this.CLOSE_MODALS()
+               }
+            })
+         }
        
       },
 
+      created() {
+         this.$nuxt.$on('TOGGLE_MODAL', ($event) => this.CLOSE_MODALS($event))
+      },
+
       mounted() {
+         this.ADD_ESC_LISTENER()
          this.GET_MAIN_COURSE()
          this.GET_COURSE_PREVIEW()
       }

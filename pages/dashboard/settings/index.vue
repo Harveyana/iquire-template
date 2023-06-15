@@ -51,6 +51,12 @@
    export default {
       name: 'SetingsPage',
 
+      head() {
+         return {
+            title: 'iQuire | Settings'
+         }
+      },
+
       data() {
          return {
             settingsSummaryList: [

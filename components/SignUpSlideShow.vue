@@ -9,7 +9,7 @@
             </NuxtLink>
 
             <h1 class="large-text" ref="slideshowContentHeading">
-               {{ loginSlideShowData.content[loginSlideShowData.activeSlide].heading }}
+               {{ loginSlideShowData.content[activeSlide].heading }}
             </h1>
 
             <p class="base-text"></p>
@@ -18,7 +18,7 @@
             <div>
                <div 
                   v-for="object in loginSlideShowData.content" :key="object.id"
-                  :class="{ 'active' : loginSlideShowData.activeSlide === object.id }"
+                  :class="{ 'active' : activeSlide === object.id }"
                >
                </div>
             </div>
@@ -42,6 +42,12 @@
 <script>
    export default {
       name: 'SignUpSlideShow',
+
+      data() {
+         return {
+            activeSlide: 0
+         }
+      },
 
       computed: {
          loginSlideShowData() {
@@ -74,6 +80,7 @@
 
             if (direction === 'forward') {
                slider.element.style.marginLeft = '-100%'
+               this.activeSlide = 1
 
                setTimeout(() => {
                   this.$refs.slideshowContentHeading.style.opacity = '0'
@@ -87,6 +94,7 @@
             }
             else {
                slider.element.style.marginLeft = '0'
+                this.activeSlide = 0
 
                setTimeout(() => {
                   this.$refs.slideshowContentHeading.style.opacity = '0'

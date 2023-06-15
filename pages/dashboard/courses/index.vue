@@ -6,7 +6,7 @@
          <!-- HEADING + AVATAR -->
          <dashHeader :user="user">
             <template #heading>
-               My Courses
+               Courses
             </template>
          </dashHeader>
       </div>
@@ -38,6 +38,12 @@
 
    export default {
       name: 'StudentCourses',
+
+      head() {
+         return {
+            title: 'iQuire | Courses'
+         }
+      },
 
       data() {
          return {

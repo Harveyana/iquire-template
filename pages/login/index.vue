@@ -95,6 +95,12 @@
       name: 'LoginPage',
       layout: 'loginSignUp',
 
+      head(){
+         return {
+            title: 'iQuire | Login'
+         }
+      },
+
       data() {
          return {
             user: {
@@ -276,6 +282,22 @@
             ///////////AUTH END
             
          }
+      },
+
+      beforeRouteEnter(to, from, next) {
+         next(vm => {
+            const user = JSON.parse(localStorage.getItem('user'))
+            const userIsLoggeIn = JSON.parse(localStorage.getItem('userIsLoggedIn'))
+
+            if(user && userIsLoggeIn) {
+               if (user.type != 'user') {
+                  window.location.href = `https://${user.type.toLowerCase()}.iquire.io/login`
+               }
+               else {
+                  vm.$router.push('/dashboard/overview')
+               }
+            }
+         });
       },
 
    }

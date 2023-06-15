@@ -27,7 +27,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: center !important;
+      overflow: hidden;
 
       &_spinner {
          width: 100%;

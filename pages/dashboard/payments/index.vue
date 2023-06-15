@@ -6,7 +6,7 @@
                 <!-- HEADING + AVATAR -->
                 <dashHeader :user="user">
                     <template #heading>
-                        Payment 
+                        Payments
                     </template>
                 </dashHeader>
             </div>
@@ -48,7 +48,7 @@
                      >
 
                         <td>
-                              {{payment.date.slice(3, 10)}}, {{ payment.date.slice(10, 16) }}
+                              {{ payment.date.substr(4, 11) || 'pending' }}
                         </td>
 
                         <td>
@@ -60,7 +60,7 @@
                         </td>
 
                         <td>
-                              ₦{{payment.amount}}
+                              ₦{{(payment.amount / 100).toLocaleString()}}
                         </td>
 
                         <td>
@@ -152,7 +152,7 @@
                   Amount
                </span>  <br />
 
-               ₦{{modalData.detail.amount}}
+               ₦{{(modalData.detail.amount / 100).toLocaleString()}}
             </p>
             
             <p>
@@ -176,6 +176,12 @@
 <script>
    export default {
       name: 'PaymentsPage',
+
+      head() {
+         return {
+            title: 'iQuire | Payments'
+         }
+      },
 
       data() {
          return {

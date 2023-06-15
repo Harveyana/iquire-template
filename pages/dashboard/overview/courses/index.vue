@@ -182,7 +182,13 @@
 
    export default {
       name: 'overviewSection',
-       layout: 'default',
+      layout: 'default',
+       
+      head(){
+         return {
+            title: 'iQuire | Overview'
+         }
+      },
 
       data() {        
          return {

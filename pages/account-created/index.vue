@@ -32,6 +32,12 @@
       name: 'AcountCreated',
       layout: 'loginSignUp',
 
+      head(){
+         return {
+            title: 'iQuire | Account Created'
+         }
+      },
+
       data() {
          return {
 

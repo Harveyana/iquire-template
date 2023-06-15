@@ -9,6 +9,12 @@
       name: 'OverviewCoursesIndex',
       layout: 'default',
 
+      head(){
+         return {
+            title: 'iQuire | Overview'
+         }
+      },
+
       mounted() {
          this.$router.push('/dashboard/overview/courses');
       },

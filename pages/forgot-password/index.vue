@@ -107,16 +107,22 @@
             </button>
          </div>
       </div>
-
    </div>
 </template>
 
 <script>
    import axios from 'axios';
-   // import { doc, getDoc, getFirestore, deleteDoc } from "firebase/firestore";
+   import { doc, getDoc, getFirestore, deleteDoc } from "firebase/firestore";
 
    export default {
       name: 'PasswordRecoveryPage',
+      layout: 'loginSignUp',
+
+      head(){
+         return {
+            title: 'iQuire | Recover Password'
+         }
+      },
 
       data() {
          return {
@@ -145,10 +151,10 @@
          async SUBMIT_PASSWORD(){
 
             if(this.password === this.confirmPassword){
-               const db = this.$fireModule.firestore.getFirestore()
+               const db = getFirestore()
 
-               const docRef = this.$fireModule.firestore.doc(db, "passwordResets", `${this.$route.query.passcode}`);
-               const docSnap = await this.$fireModule.firestore.getDoc(docRef);
+               const docRef = doc(db, "passwordResets", `${this.$route.query.passcode}`);
+               const docSnap = await getDoc(docRef);
 
                if (docSnap.exists()) {
                   const reset = docSnap.data()
@@ -156,9 +162,7 @@
                   axios.put("https://us-central1-dulcet-order-370109.cloudfunctions.net/user/password", {userId: reset.userId, password: this.confirmPassword})
                   .then( async(response)=>{
                      console.log(response.data)
-                     await this.$fireModule.deleteDoc( 
-                        this.$fireModule.firestore.doc(db, "passwordResets", `${this.$route.query.passcode}`)
-                     )
+                     deleteDoc(doc(db, "passwordResets", `${this.$route.query.passcode}`))
 
                      this.recoveryProgress = 3
                   })
