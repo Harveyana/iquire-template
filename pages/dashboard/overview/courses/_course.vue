@@ -36,10 +36,10 @@
             <div>
                <!-- COURSE PREVIEW VID + ACTUAL COURSE VID -->
                <div class="video-container border10">
-                  <video controls ref="video" :src="mainCourse.Modules[0].videoUrl" :poster="mainCourse.thumbnail" class="video" v-if="mainCourse">
+                  <video controlList="nodownload" controls ref="video" :src="mainCourse.Modules[0].videoUrl" :poster="mainCourse.thumbnail" class="video" v-if="mainCourse">
                   </video>
                   
-                  <video controls ref="video" src="@/assets/vids/demo.webm" :poster="coursePreview.thumbnail" class="video" v-else>
+                  <video controlList="nodownload" controls ref="video" src="@/assets/vids/demo.webm" :poster="coursePreview.thumbnail" class="video" v-else>
                   </video>
                </div>
 
