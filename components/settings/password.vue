@@ -285,7 +285,7 @@
 
             await axios.put('https://us-central1-dulcet-order-370109.cloudfunctions.net/user/password', details)
                .then((response) => {
-                  console.log(response.data)
+                  
                   this.TOAST_PING('Updated')
                
                   this.REST_FORM();

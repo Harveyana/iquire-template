@@ -189,7 +189,7 @@
 
                await axios.put('https://us-central1-dulcet-order-370109.cloudfunctions.net/user/phoneNumber', details)
                .then((response)=>{
-                  console.log(response.data)
+                  
                      // refreshes user state
                      this.CHECK_AUTH_STATE()
                      item.editOn = false;

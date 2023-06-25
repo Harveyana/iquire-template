@@ -140,7 +140,7 @@
          SUBMIT_EMAIL(){
             axios.post("https://us-central1-dulcet-order-370109.cloudfunctions.net/user/passwordReset", {email:this.userEmail})
                .then((response)=>{
-                  console.log(response.data)
+                  
                   this.recoveryProgress = 1
                })
                .catch((error)=>{
@@ -161,7 +161,7 @@
 
                   axios.put("https://us-central1-dulcet-order-370109.cloudfunctions.net/user/password", {userId: reset.userId, password: this.confirmPassword})
                   .then( async(response)=>{
-                     console.log(response.data)
+                     
                      deleteDoc(doc(db, "passwordResets", `${this.$route.query.passcode}`))
 
                      this.recoveryProgress = 3

@@ -738,7 +738,6 @@
                      });
                   ////AXIOS END
 
-                  console.log(user);
                })
                
                .catch((error) => {

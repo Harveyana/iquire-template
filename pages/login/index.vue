@@ -218,7 +218,7 @@
                         this.TOGGLE_BUTTON_STATE("signInButton")
                      })
                      
-                     console.log(user)
+                     
                })
                .catch((error) => {
                   console.log('Auth or Network Error: ', error)
@@ -268,7 +268,7 @@
                         this.errorMssg = 'Sorry, something went wrong'
                      })
                   ////AXIOS END
-                  console.log(user)
+                  
                })
                .catch((error) => {
                   //ERROR_MSG_FROM_AUTH

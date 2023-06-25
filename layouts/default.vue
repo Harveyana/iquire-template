@@ -154,7 +154,7 @@
          const user = JSON.parse(localStorage.getItem('user'))
          const userIsLoggeIn = JSON.parse(localStorage.getItem('userIsLoggedIn'))
 
-         console.log(user)
+         
 
          if(user && userIsLoggeIn) {
             if (user.type != 'user') {
