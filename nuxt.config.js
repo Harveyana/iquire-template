@@ -2,7 +2,6 @@ export default {
    // Global page headers: https://go.nuxtjs.dev/config-head
    head: {
       title: 'iQuire | Students',
-       target: 'static',
       
       meta: [
          { charset: 'utf-8' },
@@ -31,6 +30,7 @@ export default {
          { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
       ]
    },
+   target: 'static',
 
    // Global CSS: https://go.nuxtjs.dev/config-css
    css: [
