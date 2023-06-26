@@ -2,6 +2,7 @@ export default {
    // Global page headers: https://go.nuxtjs.dev/config-head
    head: {
       title: 'iQuire | Students',
+       target: 'static',
       
       meta: [
          { charset: 'utf-8' },
