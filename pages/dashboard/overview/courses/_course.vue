@@ -491,9 +491,9 @@
             button.innerText = 'Processing..'
             button.disabled = true; button.classList.add('disabled')
 
-            const detail = { userId: this.user.uid, email: this.user.email, courseId: this.coursePreview.courseId, userName: this.user.Name, authorId:this.coursePreview.authorId, callbackUrl: `http://localhost:53870/dashboard/overview/courses/${this.coursePreview.courseId}`, phoneNumber: this.user.phoneNumber || null }
+            // const detail = { userId: this.user.uid, email: this.user.email, courseId: this.coursePreview.courseId, userName: this.user.Name, authorId:this.coursePreview.authorId, callbackUrl: `http://localhost:53870/dashboard/overview/courses/${this.coursePreview.courseId}`, phoneNumber: this.user.phoneNumber || null }
+            const detail = { userId: this.user.uid, email: this.user.email, courseId: this.coursePreview.courseId, userName: this.user.Name, authorId:this.coursePreview.authorId, callbackUrl: `https://${this.user.type}.iquire.io/dashboard/courses/${this.coursePreview.courseId}`, phoneNumber: this.user.phoneNumber || null }
             const response = await axios.post('https://us-central1-dulcet-order-370109.cloudfunctions.net/payment/initialize', detail)
-            // const detail = { userId: this.user.uid, email: this.user.email, courseId: this.coursePreview.courseId, userName: this.user.Name, authorId:this.coursePreview.authorId, callbackUrl: `https://${this.user.type}.iquire.io/dashboard/courses/${this.coursePreview.courseId}`, phoneNumber: this.user.phoneNumber || null }
             
             location.replace(response.data.data.authorization_url);
          },
